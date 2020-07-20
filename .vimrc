@@ -38,6 +38,8 @@ Plug 'junegunn/fzf.vim'
 " Statusline coloring
 Plug 'itchyny/lightline.vim'
 
+" Allows changes of surrounding (,{,[,",'...
+Plug 'tpope/vim-surround'
 
 call plug#end()
 
