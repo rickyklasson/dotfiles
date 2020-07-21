@@ -66,15 +66,6 @@ nnoremap <silent><leader>g :set hls!<CR>
 nnoremap <leader><S-Up> :next<CR>
 nnoremap <leader><S-Down> :previous<CR>
 
-" Hinder repeated actions to learn better movements.
-:noremap jj <nop>
-:noremap kk <nop>
-:noremap hh <nop>
-:noremap ll <nop>
-:noremap <Up> <nop>
-:noremap <Down> <nop>
-:noremap <Right> <nop>
-:noremap <Left> <nop>
 " Indents entire doc. Needs fix to return to current location.
 nnoremap <leader>i gg=G
 
