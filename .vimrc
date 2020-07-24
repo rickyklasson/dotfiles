@@ -1,7 +1,5 @@
 set autoindent
-set noexpandtab
-set tabstop=2
-set softtabstop=2
+set mouse=a
 set shiftwidth=2
 set number
 syntax on
@@ -50,7 +48,7 @@ call plug#end()
 " Map space to leader and create convenient mappings.
 nnoremap <SPACE> <Nop>
 let mapleader=" "
-nnoremap <silent><leader>9 :Lines<CR> 
+nnoremap <silent><leader>9 :Lines<CR>
 nnoremap <silent><leader>0 :Files<CR>
 nnoremap <silent><leader>1 1gt
 nnoremap <silent><leader>2 2gt
@@ -66,6 +64,18 @@ nnoremap <silent><leader>g :set hls!<CR>
 nnoremap <leader><S-Up> :next<CR>
 nnoremap <leader><S-Down> :previous<CR>
 
+" Command for adding empty lines above or below text in normal mode.
+nnoremap <leader>o <Nop>
+nnoremap <leader>O <Nop>
+nnoremap <leader>o o<Esc>
+nnoremap <leader>O O<Esc>
+
+" Disables use of arrow keys.
+noremap <Up> <nop>
+noremap <Down> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
+
 " Indents entire doc. Needs fix to return to current location.
 nnoremap <leader>i gg=G
 
@@ -79,7 +89,6 @@ nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 " COLORING
 set background=dark
 colorscheme iceberg
-
 
 " Colors chars outside col=80.
 ":match Error /\%>80c/
@@ -115,7 +124,44 @@ set listchars=tab:>-,trail:_,extends:>,precedes:<,nbsp:␣,eol:↲
 highlight NonText ctermfg=46
 highlight Whitespace ctermfg=46
 
-" Toggle whitespace-highlighting.  
+
+" Allow toggling between local and default mode
+function! TabToggle()
+  if !exists("g:TabState")
+    let g:TabState=3
+  endif
+
+  if g:TabState ==# 0
+    echom "Tabs, spaces:2"
+    set noexpandtab
+    set shiftwidth=2
+    set softtabstop=2
+  elseif g:TabState ==# 1
+    echom "Tabs, spaces:4"
+    set noexpandtab
+    set shiftwidth=4
+    set softtabstop=4
+  elseif g:TabState ==# 2
+    echom "Spaces, spaces:2"
+    set expandtab
+    set shiftwidth=2
+    set softtabstop=2
+  elseif g:TabState ==# 3
+    echom "Spaces, spaces:4"
+    set expandtab
+    set shiftwidth=4
+    set softtabstop=4
+  endif
+
+  let g:TabState += 1
+  if g:TabState > 3
+    let g:TabState = 0
+  endif
+endfunction
+nnoremap <F9> :call TabToggle()<CR>
+inoremap <F9> <C-o>:call TabToggle()<CR>
+
+" Toggle whitespace-highlighting.
 noremap <F8> :set list!<CR>
 inoremap <F8> <C-o>:set list!<CR>
 cnoremap <F8> <C-c>:set list!<CR>
