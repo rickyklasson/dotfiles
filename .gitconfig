@@ -1,0 +1,25 @@
+[color]
+	ui = auto
+[user]
+	email = rickyk@axis.com
+	name = Ricky Klasson
+[core]
+	editor = nvim
+	attributesfile = /usr/share/atools/gitattributes
+	gitproxy = axis-git-proxy
+[merge]
+	log = true
+[diff "odf"]
+	textconv = odt2txt
+[push]
+	default = tracking
+[rebase]
+	autoSquash = true
+[init]
+	templatedir = /usr/share/ahooks/templates
+[alias]
+	push-pre-branch = "!f() { b=$(sed -nre \"s#ref: refs/heads/(pre-)?(master$|special/|rel/|int/|dev/|topic/|fix/)#\\1\\2#p\" .git/HEAD 2>/dev/null) && [ \"$b\" ] && git push \"$@\" origin $b:pre-${b#pre-} || echo \"Not currently on a valid branch!\" >&2; }; f"
+	lgb = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches --all
+[axis "hooks"]
+	directory = /usr/share/ahooks/hooks.d
+	workingdirHooks = true
