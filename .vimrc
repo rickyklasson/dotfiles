@@ -4,7 +4,6 @@ set expandtab       " Converts tabs to spaces.
 set shiftwidth=4    " When shifting, indent using 4 spaces.
 set softtabstop=4   " Indentation levels are 4 spaces.
 set number          " Show line numbers.
-syntax on           " Syntax highlighting.
 set relativenumber  " Show line numbers relative to current line.
 set showcmd         " Shows commands in last line of screen.
 set encoding=utf-8  " Changes output encoding.
@@ -16,24 +15,15 @@ set ignorecase      " Non case-sensitve searching.
 set smartcase       " Only be case-sensitive if search contains upper case.
 set scrolloff=10    " Force window to have a row margin to top and bottom.
 
-" Disable CoC startup warning.
-let g:coc_disable_startup_warning = 1
-
 " Vim-plug for handling plugins
 call plug#begin('~/.vim/plugged')
 
 " Colortheme
 Plug 'cocopon/iceberg.vim'
 
-" Autocompletion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 " Fzf fuzzy finder for localization of code and files.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-
-" Statusline coloring
-Plug 'itchyny/lightline.vim'
 
 " CSV-plugin color plugin.
 Plug 'mechatroner/rainbow_csv'
@@ -111,14 +101,12 @@ augroup BgHighlight
 	autocmd WinLeave * call OnWinLeave()
 augroup END
 
-source $HOME/.config/nvim/plug-config/coc.vim
-
 " Format whitespace.
 set listchars=tab:>-,trail:_,extends:>,precedes:<,nbsp:␣,eol:↲
 
 " Custom colors for whitespace.
-highlight NonText ctermfg=124
-highlight Whitespace ctermfg=124
+highlight NonText ctermfg=226
+highlight Whitespace ctermfg=226
 
 " Toggle the way tabs are interpreted.
 nnoremap <F9> :call TabToggle()<CR>
@@ -172,34 +160,23 @@ noremap <F3> :set relativenumber!<CR>
 inoremap <F3> <C-o>:set relativenumber!<CR>
 cnoremap <F3> <C-c>:set relativenumber!<CR>
 
-"Cscope tags, do command ':cscope' or ':cs' to see definitions
-"Regen tags: run 'csbuild' in terminal
-"Run ':cs add cscope.out' in vim
-"Return to previous cached file in vim 'ctrl+t'
-if has("cscope")
-    " show msg when any other cscope db added
-    set cscopeverbose
-    " Shortcuts in same window
-    nmap css :cs find s <C-R>=expand("<cword>")<CR><CR>    
-    nmap csg :cs find g <C-R>=expand("<cword>")<CR><CR>    
-    nmap csc :cs find c <C-R>=expand("<cword>")<CR><CR>    
-    nmap cst :cs find t <C-R>=expand("<cword>")<CR><CR>    
-    nmap cse :cs find e <C-R>=expand("<cword>")<CR><CR>    
-    nmap csf :cs find f <C-R>=expand("<cfile>")<CR><CR>    
-    nmap csi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap csd :cs find d <C-R>=expand("<cword>")<CR><CR>    
-    nmap csr <C-c><C-o>
-    " Shortcuts, open new vert window
-    nmap dss :vert scs find s <C-R>=expand("<cword>")<CR><CR>    
-    nmap dsg :vert scs find g <C-R>=expand("<cword>")<CR><CR>    
-    nmap dsc :vert scs find c <C-R>=expand("<cword>")<CR><CR>    
-    nmap dst :vert scs find t <C-R>=expand("<cword>")<CR><CR>    
-    nmap dse :vert scs find e <C-R>=expand("<cword>")<CR><CR>    
-    nmap dsf :vert scs find f <C-R>=expand("<cfile>")<CR><CR>    
-    nmap dsi :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
-    nmap dsd :vert scs find d <C-R>=expand("<cword>")<CR><CR>    
-
-    " Shortcuts for CCTree
-    nmap t1 :CCTreeTraceReverse <C-R>=expand("<cword>")<CR><CR>
-    nmap t2 :CCTreeTraceForward <C-R>=expand("<cword>")<CR><CR>
-endif
+set statusline=
+set statusline+=%#StatuslineN#%{(mode()=='n')?'\ \ NORMAL\ ':''}
+set statusline+=%#StatuslineI#%{(mode()=='i')?'\ \ INSERT\ ':''}
+set statusline+=%#DiffDelete#%{(mode()=='r')?'\ \ RPLACE\ ':''}
+set statusline+=%#StatuslineV#%{(mode()=='v')?'\ \ VISUAL\ ':''}
+set statusline+=%{&paste?'\ PASTE\ ':''}
+set statusline+=%{&spell?'\ SPELL\ ':''}
+set statusline+=%#CursorIM#     " colour
+set statusline+=%R                        " readonly flag
+set statusline+=%M                        " modified [+] flag
+set statusline+=%#Cursor#               " colour
+set statusline+=%#CursorLine#     " colour
+set statusline+=\ %t\                   " short file name
+set statusline+=%=                          " right align
+set statusline+=%#CursorLine#   " colour
+set statusline+=\ %Y\                   " file type
+set statusline+=%#CursorIM#     " colour
+set statusline+=\ %3l:%-2c\         " line + column
+set statusline+=%#Cursor#       " colour
+set statusline+=\ %3p%%\                " percentage
