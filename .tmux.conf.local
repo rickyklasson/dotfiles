@@ -320,11 +320,15 @@ tmux_conf_theme_clock_style="24"
 #   - false (default)
 # on macOS, this requires installing reattach-to-user-namespace, see README.md
 # on Linux, this requires xsel or xclip
-tmux_conf_copy_to_os_clipboard=false
+# Just mark text to copy and press y.
+tmux_conf_copy_to_os_clipboard=true
 
 
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
+#
+# Use mouse
+setw -g mouse on
 
 # increase history size
 #set -g history-limit 10000

@@ -64,6 +64,9 @@ nnoremap <silent><leader><Right> :vertical res+8<CR>
 nnoremap <silent><leader>g :set hls!<CR>
 nnoremap <leader><S-Up> :next<CR>
 nnoremap <leader><S-Down> :previous<CR>
+nnoremap <leader><S-Down> :previous<CR>
+" Copy vim buffer to system buffer.
+nnoremap <leader>y "+y<CR>
 
 " Add save functionality to ctrl+s in Insert and Normal mode.
 nnoremap <C-s> :w<CR>
