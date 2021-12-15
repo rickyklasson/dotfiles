@@ -81,6 +81,9 @@ plugins=(git zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
+# Source local zshrc config.
+[[ ! -f $HOME/.zshrc_local ]] || source $HOME/.zshrc_local
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
