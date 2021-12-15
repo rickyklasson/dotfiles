@@ -115,6 +115,9 @@ set listchars=tab:>-,trail:_,extends:>,precedes:<,nbsp:␣,eol:↲
 highlight NonText ctermfg=199
 highlight Whitespace ctermfg=199
 
+" No background in vim, uses terminal background
+hi Normal guibg=NONE ctermbg=NONE
+
 " Toggle whitespace-highlighting.
 noremap <F8> :set list!<CR>
 inoremap <F8> <C-o>:set list!<CR>
