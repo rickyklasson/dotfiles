@@ -19,20 +19,11 @@ set scrolloff=10
 set mouse=a
 filetype plugin on
 
-" Disable CoC startup warning.
-let g:coc_disable_startup_warning = 1
-
 " Vim-plug for handling plugins
 call plug#begin('~/.vim/plugged')
 
 " Colortheme
 Plug 'cocopon/iceberg.vim'
-
-" Autocompletion
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-" Godot syntax highlighting.
-Plug 'habamax/vim-ft-gdscript'
 
 " Fzf fuzzy finder for localization of code and files.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -116,8 +107,6 @@ augroup BgHighlight
 	autocmd WinEnter * call OnWinEnter()
 	autocmd WinLeave * call OnWinLeave()
 augroup END
-
-source $HOME/.config/nvim/plug-config/coc.vim
 
 " Format whitespace.
 set listchars=tab:>-,trail:_,extends:>,precedes:<,nbsp:␣,eol:↲
