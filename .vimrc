@@ -17,6 +17,7 @@ set cursorline
 set smartcase
 set scrolloff=10
 set mouse=a
+set updatetime=750
 filetype plugin on
 
 " Vim-plug for handling plugins
@@ -141,3 +142,10 @@ inoremap { {}<Left>
 inoremap ( ()<Left>
 inoremap [ []<Left>
 inoremap " ""<Left>
+
+" Silence cscope output on vim startup.
+set nocscopeverbose
+" Cscope maps, assumes symlink '.cscope_maps.vim' points to cscope maps "
+if !empty(globpath('~/', ".cscope_maps.vim"))
+	source ~/.cscope_maps.vim
+endif
