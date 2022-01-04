@@ -1,6 +1,6 @@
 set autoindent
 set noexpandtab
-set tabstop=2
+set tabstop=4
 set softtabstop=2
 set shiftwidth=2
 set number
@@ -17,7 +17,7 @@ set cursorline
 set smartcase
 set scrolloff=10
 set mouse=a
-set updatetime=750
+set updatetime=500
 filetype plugin on
 
 " Vim-plug for handling plugins
@@ -122,11 +122,6 @@ highlight Whitespace ctermfg=199
 " No background in vim, uses terminal background
 hi Normal guibg=NONE ctermbg=NONE
 
-" Toggle whitespace-highlighting.
-noremap <F8> :set list!<CR>
-inoremap <F8> <C-o>:set list!<CR>
-cnoremap <F8> <C-c>:set list!<CR>
-
 " Toggle line numbers.
 noremap <F2> :set number!<CR>
 inoremap <F2> <C-o>:set number!<CR>
@@ -136,6 +131,28 @@ cnoremap <F2> <C-c>:set number!<CR>
 noremap <F3> :set relativenumber!<CR>
 inoremap <F3> <C-o>:set relativenumber!<CR>
 cnoremap <F3> <C-c>:set relativenumber!<CR>
+
+" Toggle whitespace-highlighting.
+noremap <F8> :set list!<CR>
+inoremap <F8> <C-o>:set list!<CR>
+cnoremap <F8> <C-c>:set list!<CR>
+
+" Toggle tabs between spaces and tabs.
+let my_tab=4
+execute "set shiftwidth=".my_tab
+execute "set softtabstop=".my_tab
+set expandtab
+" allow toggling between local and default mode
+function! TabToggle()
+  if &expandtab
+    set noexpandtab
+    echo "Tabs"
+  else
+    set expandtab
+    echo "Spaces"
+  endif
+endfunction
+nnoremap <F9> :call TabToggle()<CR>
 
 " Add complementary bracket "
 inoremap { {}<Left>
