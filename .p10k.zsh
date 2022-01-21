@@ -163,7 +163,6 @@
 
   # Default background color.
   typeset -g POWERLEVEL9K_BACKGROUND=236
-
   # Separator between same-color segments on the left.
   typeset -g POWERLEVEL9K_LEFT_SUBSEGMENT_SEPARATOR='%244F\uE0B5'
   # Separator between same-color segments on the right.
@@ -224,7 +223,7 @@
   typeset -g POWERLEVEL9K_DIR_SHORTENED_FOREGROUND=103
   # Color of the anchor directory segments. Anchor segments are never shortened. The first
   # segment is always an anchor.
-  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=39
+  typeset -g POWERLEVEL9K_DIR_ANCHOR_FOREGROUND=31
   # Display anchor directory segments in bold.
   typeset -g POWERLEVEL9K_DIR_ANCHOR_BOLD=true
   # Don't shorten directories that contain any of these files. They are anchors.
@@ -373,12 +372,22 @@
     fi
 
     if (( $1 )); then
+      # Custom colors.
+      if [[ $THEME_PROFILE == 'dark' ]]; then
       # Styling for up-to-date Git status.
-      local       meta='%246F'  # grey foreground
-      local      clean='%76F'   # green foreground
-      local   modified='%178F'  # yellow foreground
-      local  untracked='%39F'   # blue foreground
-      local conflicted='%196F'  # red foreground
+        local       meta='%246F'  # grey foreground
+        local      clean='%76F'   # green foreground
+        local   modified='%178F'  # yellow foreground
+        local  untracked='%39F'   # blue foreground
+        local conflicted='%196F'  # red foreground
+      else
+      # Styling for up-to-date Git status.
+        local       meta='%246F'  # grey foreground
+        local      clean='%28F'   # darkgreen foreground
+        local   modified='%166F'  # yellow foreground
+        local  untracked='%33F'   # blue foreground
+        local conflicted='%196F'  # red foreground
+      fi
     else
       # Styling for incomplete and stale Git status.
       local       meta='%244F'  # grey foreground
