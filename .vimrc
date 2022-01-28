@@ -8,7 +8,6 @@ syntax on
 set relativenumber
 set showcmd
 set encoding=utf-8
-set textwidth=120
 set wrap
 set wrapmargin=2
 set incsearch
