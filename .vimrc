@@ -86,11 +86,18 @@ inoremap ' ''<Left>
 set background=dark
 colorscheme iceberg
 
-
 " Colors chars outside col=80.
 ":match Error /\%>80c/
 " Global default
 " set colorcolumn=80
+
+function! ColorToggle()
+if (&background == "dark")
+  set background=light
+else
+  set background=dark
+endif
+endfunction
 
 " Creates a column at col=80 in active window.
 highlight ColorColumn ctermbg=238
@@ -131,6 +138,9 @@ cnoremap <F2> <C-c>:set number!<CR>
 noremap <F3> :set relativenumber!<CR>
 inoremap <F3> <C-o>:set relativenumber!<CR>
 cnoremap <F3> <C-c>:set relativenumber!<CR>
+
+" Toggle color scheme.
+noremap <F4> :call ColorToggle()<CR>
 
 " Toggle whitespace-highlighting.
 noremap <F8> :set list!<CR>
