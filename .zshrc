@@ -118,17 +118,15 @@ source $ZSH/oh-my-zsh.sh
 
 alias j=jobs
 alias tas="tmux attach-session -t"
-alias grn="grep -Irn"
+alias grn="grep -rn"
+alias vi=nvim
+alias vim=nvim
+alias vimdiff="nvim -d"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Enable fzf history search:
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-
-# Fireflutter cli commands
-export PATH="$PATH":"$HOME/.pub-cache/bin"
-export PATH="$PATH":"$HOME/Android/Sdk/platform-tools"
+export PAGER=""
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

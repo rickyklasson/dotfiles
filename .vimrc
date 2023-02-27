@@ -82,7 +82,7 @@ inoremap [ []<Left>
 inoremap ' ''<Left>
 
 " COLORING
-set background=light
+set background=dark
 colorscheme iceberg
 
 " Colors chars outside col=80.
