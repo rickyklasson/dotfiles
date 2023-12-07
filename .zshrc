@@ -50,6 +50,9 @@ export SAVEHIST=$HISTSIZE
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
 
+# Uncomment the following like to skip verification of insecure directories.
+ZSH_DISABLE_COMPFIX="true"
+
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
